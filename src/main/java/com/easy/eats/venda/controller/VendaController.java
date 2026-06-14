@@ -60,5 +60,4 @@ public class VendaController {
         }
         return ResponseEntity.notFound().build();
     }
-
 }
