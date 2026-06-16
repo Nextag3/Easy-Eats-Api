@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.easy.eats.venda.model.Venda;
+import com.easy.eats.venda.quicksort.ProdutoRanking;
 import com.easy.eats.venda.service.VendaService;
 
 @Controller
@@ -60,5 +61,10 @@ public class VendaController {
         }
         return ResponseEntity.notFound().build();
     }
-    
+
+    @GetMapping("/ranking")
+    public ResponseEntity<List<ProdutoRanking>> rankingProdutos() {
+        return ResponseEntity.ok(service.rankingProdutos());
+    }
+
 }
