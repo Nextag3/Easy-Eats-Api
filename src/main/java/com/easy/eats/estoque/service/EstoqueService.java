@@ -1,7 +1,6 @@
 package com.easy.eats.estoque.service;
 
 import org.springframework.stereotype.Service;
-
 import com.easy.eats.estoque.bst.ArvoreInsumos;
 import com.easy.eats.estoque.model.Insumo;
 
@@ -18,8 +17,19 @@ public class EstoqueService {
         return arvore.buscar(nome);
     }
 
-    public boolean atualizarInsumo(String nome, Insumo insumo) {
-        return arvore.atualizar(nome, insumo);
+    public boolean atualizarInsumo(String nome, Insumo novoInsumo) {
+
+        Insumo encontrado = arvore.buscar(nome);
+
+        if (encontrado == null) {
+            return false;
+        }
+
+        encontrado.setNome(novoInsumo.getNome());
+        encontrado.setQuantidade(novoInsumo.getQuantidade());
+        encontrado.setUnidade(novoInsumo.getUnidade());
+
+        return true;
     }
 
     public boolean removerInsumo(String nome) {
