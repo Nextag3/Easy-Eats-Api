@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.easy.eats.estoque.service.EstoqueService;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
 @RequestMapping("/estoque")
@@ -28,7 +30,29 @@ public class EstoqueController {
     public Insumo buscar(@PathVariable String nome) {
         return estoqueService.buscarInsumo(nome);
     }
+    @PutMapping("/atualizar/{nome}")
+public String atualizar(
+        @PathVariable String nome,
+        @RequestBody Insumo insumo) {
 
-    
+    boolean atualizado =
+            estoqueService.atualizarInsumo(nome, insumo);
+
+    return atualizado
+            ? "Insumo atualizado com sucesso!"
+            : "Insumo não encontrado!";
+}
+
+@DeleteMapping("/remover/{nome}")
+public String remover(@PathVariable String nome) {
+
+    boolean removido =
+            estoqueService.removerInsumo(nome);
+
+    return removido
+            ? "Insumo removido com sucesso!"
+            : "Insumo não encontrado!";
+}
+
 }
 

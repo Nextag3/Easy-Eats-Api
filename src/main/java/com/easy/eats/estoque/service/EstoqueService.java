@@ -17,5 +17,12 @@ public class EstoqueService {
     public Insumo buscarInsumo(String nome) {
         return arvore.buscar(nome);
     }
-}
 
+    public boolean atualizarInsumo(String nome, Insumo insumo) {
+        return arvore.atualizar(nome, insumo);
+    }
+
+    public boolean removerInsumo(String nome) {
+        return arvore.remover(nome);
+    }
+}
